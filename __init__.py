@@ -29,7 +29,9 @@ try:
         def callback(path, setting, value):
             # Reload theme if the light/dark mode property has changed value.
             if path == "org.freedesktop.appearance" and setting == "color-scheme":
-                theme_manager.apply_style()
+                aqt.mw.taskman.run_on_main(
+                    lambda: theme_manager.apply_style()
+                )
 
         proxy.SettingChanged.connect(callback)
 
