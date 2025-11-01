@@ -46,13 +46,16 @@ except ImportError:
 
     from aqt.utils import showWarning
 
-    msg = """
-        <b>Anki Dark Mode Fix failed to load</b><br><br>
-        This add-on requires system libraries for D-Bus communication and will only work on Linux.
-        <br><br>
-        Please install the Python GI bindings using your system's package manager.
-        <br><br>
-        After installing, please restart Anki.
-    """
-    showWarning(msg, parent=mw, textFormat="rich")
+    def displayDependencyWarning():
+        msg = """
+            <b>Anki Dark Mode Fix failed to load</b><br><br>
+            This add-on requires system libraries for D-Bus communication and will only work on Linux.
+            <br><br>
+            Please install the Python GI bindings using your system's package manager.
+            <br><br>
+            After installing, please restart Anki.
+        """
+        showWarning(msg, parent=mw, textFormat="rich")
+
+    mw.addonManager.add_action(__name__, displayDependencyWarning)
 
