@@ -8,7 +8,7 @@
     let
         system = "x86_64-linux";
         pkgs = import nixpkgs { inherit system; };
-        package = { anki-utils, nix-update-script, pygobject3 }: anki-utils.buildAnkiAddon {
+        package = { anki-utils, nix-update-script, pygobject3 }: anki-utils.buildAnkiAddon rec {
             pname = "ankidarkmodefix";
             version = "1.0";
             src = pkgs.lib.fileset.toSource {
@@ -19,7 +19,19 @@
                 ];
             };
             passthru.updateSript = nix-update-script { };
-            propagatedBuildInputs = [ pygobject3 ];
+            buildInputs = [ pygobject3 ];
+            postInstall = ''
+                # The path to the file we need to modify
+                target_file="$out/$installPrefix/__init__.py"
+
+                # The Python code we want to inject.
+                # It adds a list of paths to the beginning of sys.path.
+                injection_code="import sys; sys.path = [p for p in '${pkgs.lib.makePythonPath buildInputs}'.split(':') if p] + sys.path"
+
+                # Use sed to replace our placeholder with the real code.
+                # The '@' symbols are used as delimiters for sed to avoid conflicts with '/' in paths.
+                sed -i "s@# @NIX_PYTHON_PATH_INJECTION@@$injection_code@" "$target_file"
+            '';
         };
     in
     {
