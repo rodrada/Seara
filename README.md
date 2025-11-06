@@ -12,3 +12,25 @@ Instead, it polls for the new value every 5 minutes.
 
 This add-on allows Anki to instantly react to those changes by suscribing to updates to the
 `org.freedesktop.appearance.color-scheme` property on D-Bus.
+
+# Installation
+
+## NixOS (using Flakes and Home Manager)
+
+Add the following to your flake inputs:
+
+```nix
+ankidarkmodefix.url = "github:rodrada/ankidarkmodefix";
+```
+
+Then, in your Anki configuration:
+
+```nix
+programs.anki.addons = [
+    inputs.ankidarkmodefix.packages."x86_64-linux".default
+];
+```
+
+## Other distros
+
+Simply download the .zip from the latest release and extract it in your Anki add-on directory.
