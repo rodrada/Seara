@@ -33,4 +33,6 @@ programs.anki.addons = [
 
 ## Other distros
 
-Simply download the .zip from the latest release and extract it in your Anki add-on directory.
+The easiest way to install the add-on is to download it from [AnkiWeb](https://ankiweb.net/shared/info/1080056423).
+
+However, if you do not want to do so, you can simply get the .zip from the latest GitHub release and extract it in your Anki add-on directory.
