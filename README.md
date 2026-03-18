@@ -1,6 +1,6 @@
 
 <h1 align="center">
-  Anki Dark Mode Fix
+  Seară
 </h1>
 
 https://github.com/user-attachments/assets/f4e5ebf1-910f-4288-84ad-7fb0d3a31fad
@@ -20,14 +20,14 @@ This add-on allows Anki to instantly react to those changes by subscribing to up
 Add the following to your flake inputs:
 
 ```nix
-ankidarkmodefix.url = "github:rodrada/ankidarkmodefix";
+anki-seara.url = "github:rodrada/seara";
 ```
 
 Then, in your Anki configuration:
 
 ```nix
 programs.anki.addons = [
-    inputs.ankidarkmodefix.packages."x86_64-linux".default
+    inputs.anki-seara.packages."x86_64-linux".default
 ];
 ```
 
