@@ -20,7 +20,7 @@ This add-on allows Anki to instantly react to those changes by subscribing to up
 Add the following to your flake inputs:
 
 ```nix
-anki-seara.url = "github:rodrada/seara";
+anki-seara.url = "github:rodrada/Seara";
 ```
 
 Then, in your Anki configuration:
